@@ -129,23 +129,12 @@ public class Date implements Comparable<Date>{
      * -1 otherwise.
      */
     public int compareTo(Date d){
-        final int EQUAL = 0, GREATER = 1, LESS = -1;
-        if (equals(d))
-            return EQUAL;
-        else{
-            if (year < d.year)
-                return LESS;
-            else if (year > d.year)
-                return GREATER;
-            else{
-                if (month < d.month)
-                    return LESS;
-                else if (month > d.month)
-                    return GREATER;
-                else
-                    return Integer.compare(day, d.day);
-            }
+        if (year == d.year){
+            if (month == d.month)
+                return Integer.compare(day, d.day);
+            return Integer.compare(month, d.month);
         }
+        return Integer.compare(year, d.year);
     }
 
     /**
