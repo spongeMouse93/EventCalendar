@@ -162,9 +162,7 @@ public class EventOrganizer {
      * @return a date made out of the token
      */
     private Date makeDate(StringTokenizer dateToken){
-        int month = Integer.parseInt(dateToken.nextToken());
-        int day = Integer.parseInt(dateToken.nextToken());
-        int year = Integer.parseInt(dateToken.nextToken());
+        int month = Integer.parseInt(dateToken.nextToken()), day = Integer.parseInt(dateToken.nextToken()), year = Integer.parseInt(dateToken.nextToken());
         return new Date(month, day, year);
     }
 
