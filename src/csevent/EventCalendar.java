@@ -25,15 +25,10 @@ public class EventCalendar {
     private int INITIAL_CAPACITY = 4;
 
     /**
-     * The starting index of the list
-     */
-    private int BEGINNER_INDEX = 0;
-
-    /**
      * A default constructor used for initializing the list
      */
     public EventCalendar(){
-        numEvents = BEGINNER_INDEX;
+        numEvents = 0;
         events = new Event[INITIAL_CAPACITY];
     }
 
@@ -45,7 +40,7 @@ public class EventCalendar {
     public boolean contains(Event e){
         if (isEmpty())
             return false;
-        for (int i = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0; i < numEvents; i++)
             if (e.equals(events[i]))
                 return true;
         return false;
@@ -58,7 +53,7 @@ public class EventCalendar {
      */
     private int find(Event e){
         final int NOT_FOUND = -1;
-        for (int i = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0; i < numEvents; i++)
             if (e.equals(events[i]))
                 return i;
         return NOT_FOUND;
@@ -74,7 +69,7 @@ public class EventCalendar {
             return false;
         Event[] copy = events;
         int indexOfE = find(e);
-        for (int i = BEGINNER_INDEX, k = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0, k = 0; i < numEvents; i++)
             if (i != indexOfE){
                 copy[k] = events[k];
                 k++;
@@ -90,7 +85,7 @@ public class EventCalendar {
      */
     private void grow(){
         Event[] copy = new Event[events.length + INITIAL_CAPACITY];
-        for (int i = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0; i < numEvents; i++)
             copy[i] = events[i];
         events = copy;
     }
@@ -102,7 +97,7 @@ public class EventCalendar {
     private boolean isFull(){
         if (isEmpty())
             return false;
-        for (int i = BEGINNER_INDEX; i < events.length; i++)
+        for (int i = 0; i < events.length; i++)
             if (events[i] == null)
                 return false;
         return true;
@@ -112,7 +107,7 @@ public class EventCalendar {
      * Checks if this list of events is empty.
      * @return true if this list of events is empty, false otherwise
      */
-    private boolean isEmpty(){return numEvents == BEGINNER_INDEX;}
+    private boolean isEmpty(){return numEvents == 0;}
 
     /**
      * Attempts to add given event to the list; will not if event is already in
@@ -124,7 +119,7 @@ public class EventCalendar {
         if (contains(e))
             return false;
         else{
-            for (int i = BEGINNER_INDEX; i < events.length; i++)
+            for (int i = 0; i < events.length; i++)
                 if (events[i] == null){
                     events[i] = e;
                     break;
@@ -169,7 +164,7 @@ public class EventCalendar {
             return;
         }
         System.out.println("* Event calendar *");
-        for (int i = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0; i < numEvents; i++)
             System.out.printf("%s\n", events[i]);
         System.out.println("* end of event calendar *");
     }
@@ -184,15 +179,15 @@ public class EventCalendar {
             return;
         }
         System.out.println("* Event calendar by campus and building *");
-        for (int i = BEGINNER_INDEX; i < numEvents; i++){
+        for (int i = 0; i < numEvents; i++){
             Location l1 = events[i].getLocation();
-            for (int j = i + 1; j < numEvents; j++){//j starts an index ahead of i
+            for (int j = i + 1; j < numEvents; j++){
                 Location l2 = events[j].getLocation();
-                if (l1.compareTo(l2) > BEGINNER_INDEX)
+                if (l1.compareTo(l2) > 0)
                     swap(events[i], events[j]);
             }
         }
-        for (int i = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0; i < numEvents; i++)
             System.out.printf("%s\n", events[i]);
         System.out.println("* end of event calendar *");
     }
@@ -207,15 +202,15 @@ public class EventCalendar {
             return;
         }
         System.out.println("* Event calendar by department *");
-        for (int i = BEGINNER_INDEX; i < numEvents; i++){
+        for (int i = 0; i < numEvents; i++){
             Department d1 = events[i].getContact().getDepartment();
-            for (int j = i + 1; j < numEvents; j++){//j starts an index ahead of i
+            for (int j = i + 1; j < numEvents; j++){
                 Department d2 = events[j].getContact().getDepartment();
-                if (d1.compareTo(d2) > BEGINNER_INDEX)
+                if (d1.compareTo(d2) > 0)
                     swap(events[i], events[j]);
             }
         }
-        for (int i = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0; i < numEvents; i++)
             System.out.printf("%s\n", events[i]);
         System.out.println("* end of event calendar *");
     }
@@ -230,15 +225,15 @@ public class EventCalendar {
             return;
         }
         System.out.println("* Event calendar by event date and start time *");
-        for (int i = BEGINNER_INDEX; i < numEvents; i++){
+        for (int i = 0; i < numEvents; i++){
             Date d1 = events[i].getDate();
-            for (int j = i + 1; j < numEvents; j++){ //j starts an index ahead of i
+            for (int j = i + 1; j < numEvents; j++){ 
                 Date d2 = events[j].getDate();
-                if (d1.compareTo(d2) > BEGINNER_INDEX)
+                if (d1.compareTo(d2) > 0)
                     swap(events[i], events[j]);
             }
         }
-        for (int i = BEGINNER_INDEX; i < numEvents; i++)
+        for (int i = 0; i < numEvents; i++)
             System.out.printf("%s\n", events[i]);
         System.out.println("* end of event calendar *");
     }
