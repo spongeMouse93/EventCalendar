@@ -192,14 +192,13 @@ public class Date implements Comparable<Date>{
      */
     private boolean isLeapYear(){
         final int QUADRENNIAL = 4, CENTENNIAL = 100, QUATERCENTENNIAL = 400;
-        final int EQUAL = 0;
-        if (year % QUADRENNIAL != EQUAL)
+        if (year % QUADRENNIAL != 0)
             return false;
         else{
-            if (year % CENTENNIAL != EQUAL)
+            if (year % CENTENNIAL != 0)
                 return true;
             else
-                return year % QUATERCENTENNIAL == EQUAL;
+                return year % QUATERCENTENNIAL == 0;
         }
     }
 
